@@ -3,7 +3,7 @@ import Toybox.WatchUi;
 import Toybox.Attention;
 import Toybox.System;
 
-var scoreVibeProfile = [new Attention.VibeProfile(50, 100)];
+var scoreVibeProfile = [new Attention.VibeProfile(75, 150)];
 
 var undoVibeProfile = [
     new Attention.VibeProfile(100, 100),  // Strong 100ms buzz
