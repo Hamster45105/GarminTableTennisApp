@@ -3,19 +3,7 @@
     <string id="AppName">Table Tennis</string>
 
     <string id="GameOver">Game Over</string>
-    <string id="winner_p1">Winner: P1</string>
-    <string id="winner_p2">Winner: P2</string>
     <string id="NewGamePrompt">Press BACK to restart</string>
-
-    <string id="menu_label_1">Reset Match</string>
-    <string id="menu_label_2">Settings</string>
-    <string id="menu_label_3">Exit</string>
-
-    <string id="settings_label_1">Match Length</string>
-
-    <string id="best_of_3">Best of 3</string>
-    <string id="best_of_5">Best of 5</string>
-    <string id="best_of_7">Best of 7</string>
 
     <string id="MatchLengthTitle">Match Length</string>
     <string id="BestOf3">Best of 3</string>
