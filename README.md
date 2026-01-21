@@ -1,7 +1,9 @@
 # Garmin Table Tennis Scoreboard
 
 > [!NOTE]
-> This is a fork of the [Table Tennis Counter](https://github.com/sammenyb/GarminTableTennisApp) app with support for the devices I need. I am unlikely to add support for other devices, but PRs are welcome (please open an issue first before starting to work on any changes). I am also unlikely to add any new features.
+> This is a fork of the [Table Tennis Counter](https://github.com/sammenyb/GarminTableTennisApp) app with support for the devices I use.
+>
+> This app is mainly for my own personal use, so I am unlikely to add support for other devices/add new features. PRs are welcome but **please open an issue first before starting to work on any changes**.
 
 
 This is an app designed for Garmin watches to help you track scores, monitor serves and keeps count of sets in a table tennis game.
