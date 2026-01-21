@@ -77,7 +77,7 @@ class MainDelegate extends WatchUi.BehaviorDelegate {
 
     function onSwipe(swipeEvent as WatchUi.SwipeEvent) as Boolean {
         var direction = swipeEvent.getDirection();
-        if (direction == WatchUi.SWIPE_RIGHT || direction == WatchUi.SWIPE_LEFT) {
+        if (direction == WatchUi.SWIPE_RIGHT) {
             WatchUi.pushView(new WatchUi.Confirmation("Exit App?"), new ExitConfirmationDelegate(), WatchUi.SLIDE_UP);
             return true;
         }
