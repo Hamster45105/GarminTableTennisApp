@@ -1,4 +1,4 @@
-This is a hobby project designed for garmin watches to help you track scores, monitors serves and keeps count of sets.
+This is an app designed to help you track scores, monitors serves and keeps count of sets in a table tennis game.
 
 --- Controls ---
 
