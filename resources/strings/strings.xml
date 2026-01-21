@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string id="AppName">PingPongCounter</string>
-
-    <string id="prompt">Click the menu button</string>
+    <string id="AppName">Table Tennis</string>
 
     <string id="GameOver">Game Over</string>
     <string id="winner_p1">Winner: P1</string>
@@ -19,9 +17,8 @@
     <string id="best_of_5">Best of 5</string>
     <string id="best_of_7">Best of 7</string>
 
-    <string id="About">PingPongCounter v1.0</string>
-    <string id="AboutText"> &#32; &#32; &#32; Created by:
-        Samuel Nyberg \n
-        Icons by icons8.com
-    </string>
+    <string id="MatchLengthTitle">Match Length</string>
+    <string id="BestOf3">Best of 3</string>
+    <string id="BestOf5">Best of 5</string>
+    <string id="BestOf7">Best of 7</string>
 </resources>

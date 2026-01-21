@@ -1,8 +1,24 @@
 import Toybox.Lang;
 import Toybox.WatchUi;
 import Toybox.Attention;
+import Toybox.System;
 
-var vibeProfile = [new Attention.VibeProfile(50, 100)];
+var scoreVibeProfile = [new Attention.VibeProfile(50, 100)];
+
+var undoVibeProfile = [
+    new Attention.VibeProfile(100, 100),  // Strong 100ms buzz
+    new Attention.VibeProfile(0, 50),     // 50ms pause (was backwards)
+    new Attention.VibeProfile(100, 100)   // Strong 100ms buzz
+];
+
+var matchOverVibeProfile = [
+    new Attention.VibeProfile(100, 200),  // Strong 200ms buzz
+    new Attention.VibeProfile(0, 100),    // 100ms pause
+    new Attention.VibeProfile(100, 200)   // Strong 200ms buzz
+];
+
+
+var backButtonHeld = false;
 
 class MainDelegate extends WatchUi.BehaviorDelegate {
 
@@ -10,31 +26,75 @@ class MainDelegate extends WatchUi.BehaviorDelegate {
         BehaviorDelegate.initialize();
     }
 
-    function onMenu() as Boolean {
-        // WatchUi.pushView(new Rez.Menus.MainMenu(), new Menu2Delegate(), WatchUi.SLIDE_UP);
-        var menu = new WatchUi.Menu2({:title=>"Menu"});
-        menu.addItem(new WatchUi.MenuItem("Reset Match", null, "reset_match", null));
-        menu.addItem(new WatchUi.MenuItem("Settings", null, "settings", null));
-        menu.addItem(new WatchUi.MenuItem("Exit", null, "exit", null));
-        WatchUi.pushView(menu, new $.Menu2Delegate(), WatchUi.SLIDE_UP);
-        // WatchUi.requestUpdate();
-        return true;
-    }
+    function onKey(keyEvent as WatchUi.KeyEvent) as Boolean {
+        var key = keyEvent.getKey();
 
-    function onKey(keyEvent as KeyEvent) as Boolean {
-        // System.println("PingPongCounterDelegate.onKey: " + keyEvent.getKey());
-        if (keyEvent.getKey() == 22) {
-            // Exit the application on holding the down key
-            WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
+        if (key == WatchUi.KEY_ESC) { // Bottom Button (physical back/escape)
+            if (!backButtonHeld) {
+                new MainView().onP2Score();
+                Attention.vibrate(scoreVibeProfile);
+                WatchUi.requestUpdate();
+            }
             return true;
-            
+        } else if (key == WatchUi.KEY_ENTER) { // Top Button
+            new MainView().onP1Score();
+            Attention.vibrate(scoreVibeProfile);
+            WatchUi.requestUpdate();
+            return true;
+        } else if (key == WatchUi.KEY_MENU) { // Menu
+            new MainView().onUndoOrSwitch();
+            Attention.vibrate(undoVibeProfile);
+            WatchUi.requestUpdate();
+            return true;
         }
 
-        new MainView().dynamicUpdate(keyEvent);
-        Attention.vibrate(vibeProfile);
-        WatchUi.requestUpdate();
-
-        return true;
+        return false;
     }
 
+    function onKeyDown(keyEvent as WatchUi.KeyEvent) as Boolean {
+        var key = keyEvent.getKey();
+        
+        if (key == WatchUi.KEY_ESC) { // Bottom Button held
+            backButtonHeld = true;
+            new MainView().onUndoOrSwitch();
+            Attention.vibrate(undoVibeProfile);
+            WatchUi.requestUpdate();
+            return true;
+        }
+        
+        return false;
+    }
+
+    function onKeyUp(keyEvent as WatchUi.KeyEvent) as Boolean {
+        var key = keyEvent.getKey();
+        
+        if (key == WatchUi.KEY_ESC) { // Bottom Button released
+            backButtonHeld = false;
+        }
+        
+        return false;
+    }
+
+    function onSwipe(swipeEvent as WatchUi.SwipeEvent) as Boolean {
+        var direction = swipeEvent.getDirection();
+        if (direction == WatchUi.SWIPE_RIGHT || direction == WatchUi.SWIPE_LEFT) {
+            WatchUi.pushView(new WatchUi.Confirmation("Exit App?"), new ExitConfirmationDelegate(), WatchUi.SLIDE_UP);
+            return true;
+        }
+        return false;
+    }
+
+}
+
+class ExitConfirmationDelegate extends WatchUi.ConfirmationDelegate {
+    function initialize() {
+        ConfirmationDelegate.initialize();
+    }
+
+    function onResponse(response) as Boolean {
+        if (response == WatchUi.CONFIRM_YES) {
+            WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
+        }
+        return true;
+    }
 }

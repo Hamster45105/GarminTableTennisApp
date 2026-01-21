@@ -1,0 +1,12 @@
+This is a hobby project designed for garmin watches to help you track scores, monitors serves and keeps count of sets.
+
+--- Controls ---
+
+Top button press: Add to player 1 score
+Bottom button press: Add to player 2 score
+Bottom button hold: Undo last point/switch server
+Swipe right: Exit app
+
+--- Customisation ---
+
+The number of sets per match can be customised in the Connect IQ settings.
