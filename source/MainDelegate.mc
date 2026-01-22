@@ -17,6 +17,13 @@ var matchOverVibeProfile = [
     new Attention.VibeProfile(100, 200)   // Strong 200ms buzz
 ];
 
+var exitMenuVibeProfile = [
+    new Attention.VibeProfile(100, 300),   // Mild 300ms buzz
+    new Attention.VibeProfile(0, 100),    // 100ms pause
+    new Attention.VibeProfile(100, 300),   // Mild 300ms buzz
+    new Attention.VibeProfile(0, 100),    // 100ms pause
+    new Attention.VibeProfile(100, 300)    // Mild 300ms buzz
+];
 
 var backButtonHeld = false;
 
@@ -79,6 +86,7 @@ class MainDelegate extends WatchUi.BehaviorDelegate {
         var direction = swipeEvent.getDirection();
         if (direction == WatchUi.SWIPE_RIGHT) {
             WatchUi.pushView(new WatchUi.Confirmation("Exit App?"), new ExitConfirmationDelegate(), WatchUi.SLIDE_UP);
+            Attention.vibrate(exitMenuVibeProfile);
             return true;
         }
         return false;
