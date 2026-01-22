@@ -1,7 +1,6 @@
 <resources>
     <layout id="MainLayout">
-        <label id="match_length_label" x="205" y="65" text="Best of " font="Gfx.FONT_XTINY" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_RIGHT"/>
-        <label id="match_length_number" x="205" y="65" text="" font="Gfx.FONT_XTINY" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_LEFT"/>
+        <label id="match_length_label" x="220" y="65" text="@Strings.BestOf" font="Gfx.FONT_XTINY" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_RIGHT"/>
 
         <label id="p1_label" x="80" y="100" text="P1" font="Gfx.FONT_MEDIUM" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER"/>
         <label id="p1_score" x="80" y="140" text="0" font="Gfx.FONT_NUMBER_MEDIUM" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER"/>

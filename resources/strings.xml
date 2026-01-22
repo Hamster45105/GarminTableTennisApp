@@ -4,6 +4,12 @@
 
     <string id="GameOver">Game Over</string>
     <string id="NewGamePrompt">Press BACK to restart</string>
+    <string id="ExitConfirmation">Exit App?</string>
+    <string id="MatchWin">wins!</string>
+    <string id="Player1Name">Player 1</string>
+    <string id="Player2Name">Player 2</string>
+
+    <string id="BestOf">Best of $1$</string>
 
     <string id="MatchLengthTitle">Match Length</string>
     <string id="BestOf3">Best of 3</string>

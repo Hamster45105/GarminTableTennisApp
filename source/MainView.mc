@@ -22,7 +22,8 @@ var total_points = 0;
 var whoServes = 1;
 var setServer = whoServes;
 var updateTimer = null;
-var bestofLabel = null;
+var bestofTextLabel = null;
+var bestofNumberLabel = null;
 
 var p1Label = null;
 var p2Label = null;
@@ -52,8 +53,8 @@ class MainView extends WatchUi.View {
 
     function onLayout(dc as Dc) as Void {
         setLayout(Rez.Layouts.MainLayout(dc));
-        bestofLabel = findDrawableById("match_length_number") as WatchUi.Text;
-        bestofLabel.setText(match_length.toString());
+        bestofTextLabel = findDrawableById("match_length_label") as WatchUi.Text;
+        updateBestOfText();
         p1Score = findDrawableById("p1_score") as WatchUi.Text;
         p2Score = findDrawableById("p2_score") as WatchUi.Text;
         p1Set = findDrawableById("p1_set") as WatchUi.Text;
@@ -68,15 +69,11 @@ class MainView extends WatchUi.View {
         var timeString = Lang.format("$1$:$2$", [clockTime.hour, clockTime.min.format("%02d")]);
         var timeView = findDrawableById("time_label") as WatchUi.Text;
         timeView.setText(timeString);
-        bestofLabel.setText(match_length.toString());
+        updateBestOfText();
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_WHITE); // Set border color
         dc.setPenWidth(1); // Set border width
         dc.drawRoundedRectangle((dc.getWidth() / 2) - 40 , dc.getHeight() - (dc.getHeight()/7), 80, 60, 10);
         dc.setPenWidth(2); 
-
-
-        p1Label.setText("P1");
-        p2Label.setText("P2");
 
         if (whoServes == 1) {
             dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_BLUE);
@@ -88,6 +85,17 @@ class MainView extends WatchUi.View {
             dc.drawRoundedRectangle(230, 100, 100, 120, 10);
         }
     }
+
+    function updateBestOfText() as Void {
+        if (bestofTextLabel == null) { return; }
+        
+        var template = WatchUi.loadResource(Rez.Strings.BestOf) as String;
+        var formatted = Lang.format(template, [match_length as Number]); 
+        
+        bestofTextLabel.setText(formatted);
+    }
+
+
 
     function timerCallback() as Void {
         WatchUi.requestUpdate();
@@ -196,19 +204,21 @@ class MainView extends WatchUi.View {
         var setsToWin = Math.floor(match_length / 2) + 1;
         var p1Name, p2Name;
 
-        p1Name = "Player 1";
-        p2Name = "Player 2";
+        p1Name = WatchUi.loadResource(Rez.Strings.Player1Name) as String;
+        p2Name = WatchUi.loadResource(Rez.Strings.Player2Name) as String;
+
+        var message = WatchUi.loadResource(Rez.Strings.MatchWin) as String;
 
         if (p1Set_ctr >= setsToWin) {
-            System.println(p1Name + " wins the match");
+            System.println(p1Name + " " + message);
             Attention.vibrate(matchOverVibeProfile);
-            var view = new WinningView(p1Name + " wins!");
+            var view = new WinningView(p1Name + " " + message);
             WatchUi.pushView(view, null, WatchUi.SLIDE_UP);
             resetMatch();
         } else if (p2Set_ctr >= setsToWin) {
-            System.println(p2Name + " wins the match");
+            System.println(p2Name + " " + message);
             Attention.vibrate(matchOverVibeProfile);
-            var view = new WinningView(p2Name + " wins!");
+            var view = new WinningView(p2Name + " " + message);
             WatchUi.pushView(view, null, WatchUi.SLIDE_UP);
             resetMatch();
         }
