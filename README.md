@@ -7,7 +7,7 @@
 
 
 This is an app designed for Garmin watches to help you track scores, monitor serves and keeps count of sets in a table tennis game.
-The published app can be found on the [Garmin Connect IQ Store](https://apps.garmin.com/apps/6fb68ada-3f60-4b7f-b7be-96cd20d74737).
+The published app can be found on the [Garmin Connect IQ Store](https://apps.garmin.com/apps/b9457cd8-80d9-492f-9253-41e10c22cde2).
 
 ## Controls
 
