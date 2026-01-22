@@ -85,7 +85,8 @@ class MainDelegate extends WatchUi.BehaviorDelegate {
     function onSwipe(swipeEvent as WatchUi.SwipeEvent) as Boolean {
         var direction = swipeEvent.getDirection();
         if (direction == WatchUi.SWIPE_RIGHT) {
-            WatchUi.pushView(new WatchUi.Confirmation("Exit App?"), new ExitConfirmationDelegate(), WatchUi.SLIDE_UP);
+            var message = WatchUi.loadResource(Rez.Strings.ExitConfirmation) as String;
+            WatchUi.pushView(new WatchUi.Confirmation(message), new ExitConfirmationDelegate(), WatchUi.SLIDE_UP);
             Attention.vibrate(exitMenuVibeProfile);
             return true;
         }
